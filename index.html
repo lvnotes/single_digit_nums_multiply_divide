@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Множу і ділю на одноцифрові числа</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1b3a57;--sky:#29b6e8;--line:#cfe5f2;--okb:#d8f5de;--okc:#2e9e4a;--badb:#ffdcdc;--badc:#d93a3a}
+*{box-sizing:border-box}
+body{margin:0;font-family:Nunito,system-ui,"Segoe UI",sans-serif;color:var(--ink);background-color:#f7fcff;background-size:24px 24px;padding-bottom:48px}
+body{background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px)}
+main{max-width:860px;margin:0 auto;padding:12px}
+header{background:var(--sky);color:#fff;border-radius:22px;padding:18px 22px;margin:8px 0 20px;display:flex;align-items:center;gap:16px}
+header i{font:900 44px/1 Nunito,sans-serif;font-style:normal;letter-spacing:6px;opacity:.55}
+h1{margin:0;font-size:clamp(22px,5vw,34px);font-weight:900;line-height:1.15}
+.sec{background:#fff;border:3px solid var(--sky);border-radius:20px;margin-bottom:22px;overflow:hidden}
+.sec h2{display:flex;gap:12px;align-items:flex-start;margin:0;padding:14px 16px;font-size:clamp(17px,3.6vw,21px);font-weight:800;line-height:1.3;background:#eaf7fd}
+.sec h2 b{flex:none;width:34px;height:34px;border-radius:50%;background:var(--sky);color:#fff;display:grid;place-items:center;font-weight:900}
+.box{display:grid;gap:28px 24px;padding:20px 16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g2 .pw{justify-self:stretch;display:flex;flex-direction:column;align-items:center;border:2.5px dashed #8fc3de;border-radius:18px;background:#fafdff;padding:16px 14px 14px}
+.hint{grid-column:1/-1;margin:0;padding:10px 14px;background:#fff6d6;border-radius:12px;font-weight:700;font-size:16px;line-height:1.4}
+.g2 .an{width:100%;margin-top:12px;padding-top:12px;border-top:2px dotted #cfe5f2}
+.g4{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.dvw{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.pw,.dw{justify-self:center}
+.pz{display:flex;flex-direction:column;align-items:flex-end;width:max-content}
+.pz.pl{align-items:flex-start;position:relative}
+.pz.pl .mx{position:absolute;left:0;top:40px;width:40px;height:40px;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;font:800 30px/1.2 Nunito,sans-serif}
+.pz hr{align-self:stretch;border:0;border-top:3px solid var(--ink);margin:4px 0 8px}
+.nr{display:flex;gap:4px;font:800 30px/1.2 Nunito,sans-serif}
+.cl{width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center}
+.cl svg{width:32px;height:32px}
+.an{display:flex;align-items:center;gap:6px;margin-top:10px;font:800 22px Nunito,sans-serif;flex-wrap:wrap;justify-content:center}
+.sm svg{width:26px;height:26px;vertical-align:middle}
+input{font:800 26px Nunito,sans-serif;color:var(--ink);border:2px solid #9cc7de;border-radius:8px;background:#fff;text-align:center;padding:0;height:42px}
+input.c{width:40px}
+input.n{width:112px;text-align:right;padding-right:10px;align-self:flex-end}
+input:focus-visible,button:focus-visible{outline:3px solid #ffb100;outline-offset:2px}
+.ok{background:var(--okb)!important;border-color:var(--okc)!important}
+.bad{background:var(--badb)!important;border-color:var(--badc)!important}
+.cd{font:800 24px Nunito,sans-serif;color:var(--ink);background:#fff;border:3px solid #9cc7de;border-radius:14px;padding:16px 8px;cursor:pointer}
+.cd.sel{outline:3px dashed var(--ink);outline-offset:2px}
+.dv{display:grid;grid-template-columns:24px repeat(3,40px) 12px repeat(2,40px);grid-template-rows:42px 42px 6px 42px 42px 6px 42px;gap:0 2px}
+.dv b{align-self:center;text-align:center;font:800 30px Nunito,sans-serif}
+.dv .dr{text-align:left;padding-left:12px;border-bottom:3px solid var(--ink)}
+.dv .vb{grid-area:1/5/3/6;border-right:3px solid var(--ink)}
+.dv .ln{border-top:3px solid var(--ink);align-self:center}
+.dv s{text-decoration:none;align-self:center;text-align:right;font:800 26px Nunito,sans-serif;padding-right:4px}
+.dfb{display:flex;gap:14px;justify-content:center;margin-top:10px;font-weight:800;font-size:15px;min-height:22px}
+.bar{display:flex;align-items:center;gap:14px;padding:0 16px 16px}
+button.b{font:800 17px Nunito,sans-serif;border:0;border-radius:999px;background:var(--sky);color:#fff;padding:10px 22px;cursor:pointer}
+button.b:hover{background:#1597c9}
+.fb{font-weight:800;font-size:18px}
+.fg{color:#1e8a3a}.fr{color:#c62f2f}
+.fin{text-align:center;margin:28px 0}
+button.big{font:900 20px Nunito,sans-serif;border:0;border-radius:999px;background:#ffd24d;color:var(--ink);padding:14px 34px;cursor:pointer;box-shadow:0 4px 0 #d9a91a}
+#sum[hidden]{display:none}
+.res{padding:20px 16px 24px;text-align:center}
+.tot{font:900 56px/1 Nunito,sans-serif}
+.res p{font-size:19px;font-weight:800;margin:10px 0 16px}
+.res ul{list-style:none;padding:0;margin:0 auto 20px;max-width:420px}
+.res li{display:flex;justify-content:space-between;padding:9px 4px;border-bottom:2px dotted #9cc7de;font-weight:800;font-size:18px}
+</style>
+</head>
+<body>
+<main>
+<header><i>×:</i><h1>Множу і ділю на одноцифрові числа</h1></header>
+<div id="app"></div>
+<div class="fin"><button class="big" onclick="done()">Підбити підсумок</button></div>
+<section class="sec" id="sum" hidden>
+<h2><b>★</b>Підсумок</h2>
+<div class="res"><div class="tot" id="tot"></div><p id="msg"></p><ul id="lst"></ul>
+<button class="b" onclick="init();scrollTo({top:0,behavior:'smooth'})">Нові числа</button></div>
+</section>
+</main>
+<script>
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,sh=a=>[...a].sort(()=>Math.random()-.5),$=s=>document.querySelector(s);
+const h=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.innerHTML=x;return e};
+const mark=(e,ok)=>{e.classList.remove('ok','bad');e.classList.add(ok?'ok':'bad')};
+const cl=x=>`<span class="cl">${x}</span>`;
+const cell=(t,rows)=>{const e=h('input',t);e.inputMode='numeric';return e};
+const SH=['<svg viewBox="0 0 30 30"><rect x="3" y="3" width="24" height="24" rx="3" fill="#29a2e8"/></svg>',
+'<svg viewBox="0 0 30 30"><circle cx="15" cy="15" r="12" fill="#18b39a"/></svg>',
+'<svg viewBox="0 0 30 30"><path d="M15 3 28 27H2z" fill="#f5a623"/></svg>',
+'<svg viewBox="0 0 30 30"><path d="M8 4h14l7 11-7 11H8L1 15z" fill="#e0559a"/></svg>'];
+const PC=['#ffe27a','#9fd8ff','#d9c2ff','#ffc59a'];
+const NM=['Письмове множення','Заховані цифри','Пари виразів','Ділення'];
+const S=[],res=[];
+
+/* 1. Письмове множення */
+S[0]={t:'Знайди добутки письмово.',n:6,
+gen(b){b.className='box g3';this.it=[];
+ const ds=sh([2,3,4,5,6,7,8,9]).slice(0,6).sort((x,y)=>y-x),seen=new Set,els=[];
+ ds.forEach((d,i)=>{const m=Math.floor(999/d);let a;
+  do a=i<4?10*R(11,Math.floor(m/10)):R(101,m);while(seen.has(a));seen.add(a);
+  const p=''+a*d,w=h('div','pw'),row=h('div','nr');row.dataset.g=1;
+  w.innerHTML=`<div class="pz pl"><span class="mx">×</span><div class="nr">${cl('')}${[...''+a].map(cl).join('')}</div><div class="nr">${cl('')}${cl('').repeat(''.concat(a).replace(/0+$/,'').length-1)}${cl(d)}</div><hr></div>`;
+  row.insertAdjacentHTML('beforeend',cl('').repeat(4-p.length));
+  const es=[...p].map(()=>{const e=cell('c');e.maxLength=1;row.append(e);return e});
+  w.firstChild.append(row);els.push(w);this.it.push([es,p])});
+ sh(els).forEach(w=>b.append(w))},
+chk(){let s=0;this.it.forEach(([es,p])=>{const ok=es.map(e=>e.value).join('')===p;es.forEach(e=>mark(e,ok));s+=ok});return s}};
+
+/* 2. Заховані цифри */
+S[1]={t:'За однаковими фігурами заховані однакові цифри. Які цифри «захопились» під фігурами?',n:4,
+gen(b){b.className='box g2';this.it=[];const u=new Set;
+ for(let i=0;i<4;i++){let a,d,r,hid;
+  for(;;){d=R(2,9);a=''+R(100,Math.floor(999/d));if(u.has(a))continue;r=''+a*d;const c={};[...a+r].forEach(x=>c[x]=(c[x]||0)+1);
+   const k=Object.keys(c).filter(x=>c[x]>1&&x!=d);if(!k.length)continue;hid=sh(k).slice(0,R(1,Math.min(2,k.length)));u.add(a);break}
+  const sp=s=>[...s].map(x=>{const j=hid.indexOf(x);return cl(j<0?x:SH[j])}).join('');
+  const w=h('div','pw'),an=h('div','an');
+  w.innerHTML=`<div class="pz"><div class="nr">${sp(a)}</div><div class="nr">${cl('×')}${cl(d)}</div><hr><div class="nr">${sp(r)}</div></div>`;
+  const ins=hid.map((x,j)=>{an.insertAdjacentHTML('beforeend',`<i class="sm">${SH[j]}</i>=`);const e=cell('c');e.maxLength=1;an.append(e);return e});
+  w.append(an);b.append(w);this.it.push({a,d,r,hid,ins})}},
+chk(){let s=0;this.it.forEach(p=>{const m={},v=p.ins.map(e=>e.value);p.hid.forEach((x,j)=>m[x]=v[j]);
+  const f=t=>[...t].map(x=>m[x]??x).join('');
+  const ok=v.every(x=>x!=='')&&new Set(v).size==v.length&&f(p.a)[0]!='0'&&f(p.r)[0]!='0'&&f(p.a)*p.d==+f(p.r);
+  p.ins.forEach(e=>mark(e,ok));s+=ok});return s}};
+
+/* 3. Пари виразів */
+S[2]={t:'Кожний вираз має свою пару з однаковим результатом. Знайди й зафарбуй однаковим кольором кожну пару.',n:4,
+gen(b){b.className='box g4';b.innerHTML='<p class="hint">Натискай по черзі на два вирази з однаковим результатом — вони зафарбуються одним кольором. Щоб роз’єднати пару, натисни на будь-який із її виразів ще раз.</p>';const rs=new Set,c=[];
+ while(rs.size<4){const a=R(20,150),d=R(2,9),r=a*d;if(rs.has(r)||r>499)continue;rs.add(r);const e=R(2,Math.min(9,Math.floor(999/r)));c.push({t:`${a} × ${d}`,r},{t:`${r*e} : ${e}`,r})}
+ this.c=sh(c);this.p=[];this.s=null;
+ this.c.forEach((x,i)=>{x.e=h('button','cd',x.t);x.e.onclick=()=>this.click(i);b.append(x.e)});this.rend()},
+click(i){const k=this.p.findIndex(q=>q.i.includes(i));
+ if(k>=0){this.p.splice(k,1);this.s=null}
+ else if(this.s==null)this.s=i;
+ else if(this.s==i)this.s=null;
+ else{const u=this.p.map(q=>q.c);this.p.push({i:[this.s,i],c:PC.findIndex((_,j)=>!u.includes(j))});this.s=null}
+ this.rend()},
+rend(){this.c.forEach((x,i)=>{const q=this.p.find(q=>q.i.includes(i));x.e.className='cd'+(this.s===i?' sel':'');x.e.style.background=q?PC[q.c]:''})},
+chk(){let s=0;this.c.forEach((x,i)=>{const q=this.p.find(q=>q.i.includes(i));mark(x.e,!!q&&this.c[q.i[0]].r==this.c[q.i[1]].r)});
+ this.p.forEach(q=>s+=this.c[q.i[0]].r==this.c[q.i[1]].r);return s}};
+
+/* 4. Ділення стовпчиком */
+function dvGen(){for(;;){const d=R(3,9),q=R(10,99),n=q*d;if(n<100||n>999)continue;
+ const D=[...''+n].map(Number);if(D[0]>=d)continue;
+ let r=0,p,st=[];
+ for(let i=0;i<2;i++){p=i?r*10+D[2]:D[0]*10+D[1];const qi=Math.floor(p/d),pr=qi*d;r=p-pr;st.push({p,pr,r,qi})}
+ if(st.every(s=>s.pr>=10&&s.p>=10)&&st[0].r&&!st[1].r)return{d,D,st}}}
+S[3]={t:'Виконай ділення. Заповни всі клітинки — і частку, і проміжні обчислення.',n:6,
+gen(b){b.className='box dvw';this.it=[];
+ const seen=new Set;for(let i=0;i<3;i++){let x;do x=dvGen();while(seen.has(x.D.join('')));seen.add(x.D.join(''));const{d,D,st}=x,g=h('div','dv'),ex=[];
+  g.innerHTML=D.map((x,k)=>`<b style="grid-area:1/${k+2}">${x}</b>`).join('')
+   +`<b class="dr" style="grid-area:1/6/2/8">${d}</b><i class="vb"></i>`
+   +'<i class="ln" style="grid-area:3/2/4/5"></i><i class="ln" style="grid-area:6/3/7/5"></i>'
+   +'<s style="grid-area:2/1">−</s><s style="grid-area:5/2">−</s>';
+  const put=(r,c,v,k)=>{const e=cell('c');e.maxLength=1;e.style.gridArea=`${r}/${c}`;g.append(e);ex.push([e,''+v,k])};
+  const two=(r,c,v,k)=>[...''+v].forEach((x,j)=>put(r,c+j,x,k));
+  put(2,6,st[0].qi,'q');two(2,2,st[0].pr,'s');
+  two(4,3,st[1].p,'s');put(2,7,st[1].qi,'q');two(5,3,st[1].pr,'s');
+  put(7,4,st[1].r,'s');
+  const w=h('div','dw'),fb=h('div','dfb');w.append(g,fb);b.append(w);this.it.push({ex,fb})}},
+chk(){let s=0;this.it.forEach(({ex,fb})=>{const g={q:[0,0],s:[0,0]};
+  ex.forEach(([e,v,k])=>{const ok=e.value===v;mark(e,ok);g[k][0]+=ok;g[k][1]++});
+  const a=g.q[0]==g.q[1],c=g.s[0]==g.s[1];s+=a+c;
+  fb.innerHTML=`<span class="${a?'fg':'fr'}">Частка: ${a?'правильно':'є помилки'}</span><span class="${c?'fg':'fr'}">Кроки: ${g.s[0]} з ${g.s[1]}</span>`});return s}};
+
+/* Спільне */
+$('#app').innerHTML=S.map((x,i)=>`<section class="sec"><h2><b>${i+1}</b>${x.t}</h2><div class="box" id="b${i}"></div><div class="bar"><button class="b" onclick="chk(${i})">Перевірити</button><span class="fb" id="f${i}"></span></div></section>`).join('');
+function init(){$('#sum').hidden=true;S.forEach((x,i)=>{const b=$('#b'+i);b.innerHTML='';x.gen(b);$('#f'+i).textContent=''})}
+function chk(i){const s=S[i].chk(),f=$('#f'+i);res[i]=s;f.textContent=`${s} з ${S[i].n}`;f.className='fb '+(s==S[i].n?'fg':'fr');return s}
+function done(){let t=0,m=0;
+ const li=S.map((x,i)=>{const s=chk(i);t+=s;m+=x.n;return `<li><span>${NM[i]}</span><b class="${s==x.n?'fg':'fr'}">${s} з ${x.n}</b></li>`}).join('');
+ const p=t/m;
+ $('#tot').textContent=`${t} з ${m}`;
+ $('#msg').textContent=p>=.9?'Чудово! Ти справжній математик!':p>=.7?'Дуже добре! Ще трохи — і буде ідеально.':p>=.5?'Непогано! Подивись на червоні клітинки й спробуй виправити.':'Потренуйся ще — нові числа вже чекають.';
+ $('#lst').innerHTML=li;$('#sum').hidden=false;$('#sum').scrollIntoView({behavior:'smooth'})}
+addEventListener('input',e=>{const t=e.target;if(t.tagName!='INPUT')return;
+ t.classList.remove('ok','bad');t.value=t.value.replace(/\D/g,'');
+ if(t.classList.contains('c')&&t.value){const a=[...(t.closest('[data-g]')||t.closest('.box')).querySelectorAll('input.c')];a[a.indexOf(t)+1]?.focus()}});
+addEventListener('keydown',e=>{const t=e.target;
+ if(e.key=='Backspace'&&t.classList?.contains('c')&&!t.value){const a=[...(t.closest('[data-g]')||t.closest('.box')).querySelectorAll('input.c')];a[a.indexOf(t)-1]?.focus()}});
+addEventListener('focusin',e=>{if(e.target.tagName=='INPUT')e.target.select()});
+init();
+</script>
+</body>
+</html>
